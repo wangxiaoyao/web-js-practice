@@ -4,7 +4,7 @@
 
 ## IDE推荐
 
-mac： vs code
+mac： VS code（微软）
 
 ## 使用说明
 
