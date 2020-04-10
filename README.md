@@ -1,16 +1,14 @@
 # web-js-practice
 
-前端积累的练习代码，从html，css，javascript 三个方面入手。写一些前端常见/用的demo。
+前端积累的练习代码。
 
-## IDE推荐
+包括html，css，javascript 三大块。以及前端常用的demo实例。
 
-mac： VS code（微软）
+## 说明
 
-## 使用说明
+每个文件夹命名：以html，css，JS， demo作为开头。来区分上述所说的不同板块。
 
-每个文件夹就是一个demo练习，主要包含html文件。使用浏览器进行打开。
+## IDE
 
-若是小案例就不进行js分离。
-
-第三方库，则是引用CDN的方式，固需要联网。也是避免重复以及上传过大文件。
+vscode：请升级到最新版本
 
