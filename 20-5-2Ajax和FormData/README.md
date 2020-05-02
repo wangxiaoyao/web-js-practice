@@ -40,35 +40,35 @@ node server.js
 ContentType: "application/x-www-form-urlencoded",
 ```
 
-
-
-
+重点：Buffer.concat(data).toString() ， 需要把String 转为JSON传出去
 
 2 表单数据
 
+- 1首先表单自带文件类型：
 
+```
+ContentType: "multipart/form-data",
+```
 
+- 2表单不论有没有二进制文件，都设置请求编码为二进制
 
-## 注：
+```
+request.setEncoding("binary");
+```
 
-get和post请求
+- 3因为是二进制，data接收需要用字符串，比数组更简单
 
-1 区别：
+- 4依据http的相关字段，判断二进制类型，分别处理: 一般表单数据， file类型的图片数据，file类型的文件类型数据，file类型的视频数据等等
 
-1. Get是不安全的，传输数据放在请求的URL中；传送的数据量较小，这主要是因为受URL长度限制
+## 注：get和post区别
 
+1. Get是不安全的，传输数据放在请求的URL中；传送的数据量较小，这主要是因为受URL长度限制的所有操作对用户来说都是不可见的。
 
+2 Post传送的数据，封装在请求体中：除非后端做限制。
 
-的所有操作对用户来说都是不可见的。
+3 Get限制Form表单的数据集的值必须为ASCII字符；而Post支持整个ISO10646字符集。
 
- 2 Post传送的数据，封装在请求体中：除非后端做限制，否则被放在请求体重封装
-
-
-
-
-   3. Get限制Form表单的数据集的值必须为ASCII字符；而Post支持整个ISO10646字符集。
-
-   4. Get执行效率却比Post方法好。Get是form提交的默认方法。
+4  Get执行效率却比Post方法好。Get是form提交的默认方法。
 
    
 ## 客户端
@@ -79,14 +79,12 @@ get和post请求
 
 以node为例：
 
-
-require("url")  工具库
+require("url")  : 处理URL
+require(querystring)： 将字符串转为JSON对象
 
 1 路由：
 
  url.parse(request.url).pathname;
-
-
 
 2 get数据获取：true 才会转为对象，false是字符串
 
@@ -94,13 +92,7 @@ require("url")  工具库
 
 url.parse(request.url, true).query;
 
-
-
-3 post数据获取：注意表单必须有name值
-
-有时候需要判断并阻止post数据过大
-
-querystring.parse(data)
+3 post数据获取：注意表单必须有name值。有时候需要判断并阻止post数据过大
 
 
 
